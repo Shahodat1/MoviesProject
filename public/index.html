@@ -9,19 +9,20 @@
 <body>
     <div class="container">
         <div class="sidebar">
-            <button>All Genres</button>
-            <button>Action</button>
-            <button>Comedy</button>
-            <button>Thriller</button>
+            <button autofocus class="all_btn">All Genres</button>
+            <button class="action_btn">Action</button>
+            <button class="comedy_btn">Comedy</button>
+            <button class="thriller_btn">Thriller</button>
         </div>
         <div class="main">
             <button class="new-movie">New Movie</button>
-            <p>Showing 9 movies in the database.</p>
+            <p class="showing">Showing 9 movies in the database.</p>
             <div class="search">
                 <input type="text" placeholder="Search...">
             </div>
             <table>
-                <tr>
+                <thead>
+                    <tr>
                     <th>Title</th>
                     <th>Genre</th>
                     <th>Stock</th>
@@ -29,22 +30,11 @@
                     <th>Like</th>
                     <th>Action</th>
                 </tr>
-                <tr>
-                    <td>Airplane</td>
-                    <td>Comedy</td>
-                    <td>7</td>
-                    <td>3.5</td>
-                    <td><span class="heart">&#9829;</span></td>
-                    <td><button class="delete">Delete</button></td>
-                </tr>
-                <tr>
-                    <td>Die Hard</td>
-                    <td>Action</td>
-                    <td>5</td>
-                    <td>2.5</td>
-                    <td><span class="heart">&#9829;</span></td>
-                    <td><button class="delete">Delete</button></td>
-                </tr>
+                </thead>
+                <tbody>
+                   
+                </tbody>
+                
             </table>
             <div class="pagination">
                 <button>1</button>
