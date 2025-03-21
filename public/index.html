@@ -1,58 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movies</title>
-    <link rel="stylesheet" href="/dist/index.css">
-</head>
-<body>
-    <div class="container">
-        <div class="sidebar">
-            <button>All Genres</button>
-            <button>Action</button>
-            <button>Comedy</button>
-            <button>Thriller</button>
-        </div>
-        <div class="main">
-            <button class="new-movie">New Movie</button>
-            <p>Showing 9 movies in the database.</p>
-            <div class="search">
-                <input type="text" placeholder="Search...">
-            </div>
-            <table>
-                <tr>
-                    <th>Title</th>
-                    <th>Genre</th>
-                    <th>Stock</th>
-                    <th>Rate</th>
-                    <th>Like</th>
-                    <th>Action</th>
-                </tr>
-                <tr>
-                    <td>Airplane</td>
-                    <td>Comedy</td>
-                    <td>7</td>
-                    <td>3.5</td>
-                    <td><span class="heart">&#9829;</span></td>
-                    <td><button class="delete">Delete</button></td>
-                </tr>
-                <tr>
-                    <td>Die Hard</td>
-                    <td>Action</td>
-                    <td>5</td>
-                    <td>2.5</td>
-                    <td><span class="heart">&#9829;</span></td>
-                    <td><button class="delete">Delete</button></td>
-                </tr>
-            </table>
-            <div class="pagination">
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-            </div>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vidly</title>
+    <link rel="stylesheet" href="/dist/index.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="#" id="navHome">Vidly</a></li>
+        <li><a href="#" id="navLogin">Login</a></li>
+        <li><a href="#" id="navRegister">Register</a></li>
+        <li id="userMenu">
+          <div class="circle">A</div>
+          <ul class="dropdown">
+            <li><a href="#" id="logout">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <div id="loginPage" class="authPage">
+      <h2>Login</h2>
+      <label for="username">Username:</label>
+      <input type="text" id="username" />
+      <label for="password">Password:</label>
+      <input type="password" id="password" />
+      <button id="loginBtn">Login</button>
+      <p id="errorMessage"></p>
     </div>
-    <script src="/dist/index.js"></script>
-</body>
+
+    <div id="registerPage" class="authPage">
+      <h2>Register</h2>
+      <label for="regUsername">Username:</label>
+      <input type="text" id="regUsername" />
+      <label for="regPassword">Password:</label>
+      <input type="password" id="regPassword" />
+      <label for="regName">Name:</label>
+      <input type="text" id="regName" />
+      <button id="registerBtn">Register</button>
+    </div>
+
+    <script src="/dist/index.js" type="module"></script>
+  </body>
 </html>
