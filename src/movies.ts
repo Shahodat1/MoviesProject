@@ -1,6 +1,6 @@
-type Genre = "all_genres" | "action" | "comedy" | "thriller";
+export type Genre = "all_genres" | "action" | "comedy" | "thriller";
 
-interface Sidebar {
+export interface Sidebar {
     title: string;
     genre: Genre;
     stock: number;

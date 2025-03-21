@@ -1,48 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movies</title>
-    <link rel="stylesheet" href="/dist/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movies</title>
+  <link rel="stylesheet" href="/dist/index.css">
 </head>
+
 <body>
-    <div class="container">
-        <div class="sidebar">
-            <button autofocus class="all_btn">All Genres</button>
-            <button class="action_btn">Action</button>
-            <button class="comedy_btn">Comedy</button>
-            <button class="thriller_btn">Thriller</button>
-        </div>
-        <div class="main">
-            <button class="new-movie">New Movie</button>
-            <p class="showing">Showing 9 movies in the database.</p>
-            <div class="search">
-                <input type="text" placeholder="Search...">
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                    <th>Title</th>
-                    <th>Genre</th>
-                    <th>Stock</th>
-                    <th>Rate</th>
-                    <th>Like</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                   
-                </tbody>
-                
-            </table>
-            <div class="pagination">
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-            </div>
-        </div>
+  <div class="container">
+    <div class="sidebar">
+      <button autofocus class="all_btn">All Genres</button>
+      <button class="action_btn">Action</button>
+      <button class="comedy_btn">Comedy</button>
+      <button class="thriller_btn">Thriller</button>
     </div>
-    <script src="/dist/index.js"></script>
+    <div class="main">
+      <button class="new-movie">New Movie</button>
+      <p class="showing">Showing 9 movies in the database.</p>
+      <div class="search">
+        <input type="text" placeholder="Search...">
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Stock</th>
+            <th>Rate</th>
+            <th>Like</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+
+      </table>
+      <div class="pagination">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+      </div>
+    </div>
+  </div>
+
+    <form class="popup">
+      <h2 class="popup_title">Add New Movie</h2>
+      <input type="text" required placeholder="Title">
+      <input type="text" required placeholder="Genre">
+      <input type="number" required placeholder="Stock">
+      <input type="number" required placeholder="Rate">
+      <button id="addMovie">Add</button>
+    </form>
+  <script src="/dist/index.js"></script>
 </body>
+
 </html>

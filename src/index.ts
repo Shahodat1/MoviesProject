@@ -1,5 +1,14 @@
 import { movies } from './movies';
 
+type Genre = "all_genres" | "action" | "comedy" | "thriller";
+
+interface Sidebar {
+    title: string;
+    genre: Genre;
+    stock: number;
+    rate: number;
+}
+
 const tableBody: HTMLTableSectionElement | null = document.querySelector("table tbody");
 const allBtn = document.querySelector(".all_btn") as HTMLButtonElement;
 const actionBtn = document.querySelector(".action_btn") as HTMLButtonElement;
@@ -7,6 +16,7 @@ const comedyBtn = document.querySelector(".comedy_btn") as HTMLButtonElement;
 const thrillerBtn = document.querySelector(".thriller_btn") as HTMLButtonElement;
 const showingElm = document.querySelector('.showing') as HTMLParagraphElement;
 const searchInput = document.querySelector('.search input') as HTMLInputElement;
+const newMovieBtn = document.querySelector('.new-movie') as HTMLButtonElement;
 
 function renderMovies(genre: string | null) {
   tableBody!.innerHTML = "";
@@ -60,13 +70,56 @@ function searchMovies(query: string) {
     tableBody?.appendChild(row);
   });
 }
+   
+function addNewMovie() {
+  const popup = document.querySelector('.popup') as HTMLFormElement;
+  popup.style.display = "block";
+}
+
+const popup = document.querySelector('.popup') as HTMLFormElement | null;
+popup?.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const title = (popup.querySelector('input[placeholder="Title"]') as HTMLInputElement)?.value.trim();
+  const genre = (popup.querySelector('input[placeholder="Genre"]') as HTMLInputElement)?.value.trim();
+  const stock = (popup.querySelector('input[placeholder="Stock"]') as HTMLInputElement)?.value.trim();
+  const rate = (popup.querySelector('input[placeholder="Rate"]') as HTMLInputElement)?.value.trim();
+
+  if (title && genre && stock && rate) {
+    if (["action", "comedy", "thriller"].includes(genre)) {
+      const newMovie: Sidebar = {
+        title,
+        genre: genre as Genre, 
+        stock: parseInt(stock),
+        rate: parseFloat(rate),
+      };
+      movies.push(newMovie);
+      renderMovies(null); 
+
+      popup.style.display = "none";
+      popup.reset();
+    } else {
+      alert("Недопустимый жанр. Пожалуйста, введите: action, comedy или thriller.");
+    }
+  } else {
+    alert("Пожалуйста, заполните все поля.");
+  }
+});
+
+
+newMovieBtn.addEventListener("click", () => {
+  console.log("Кнопка нажата!");
+  addNewMovie();
+});
+
+
+
+renderMovies(null)
 
 searchInput.addEventListener("input", () => {
   const query = searchInput.value.trim();
   searchMovies(query);
 });
-
-renderMovies(null)
 
 allBtn.addEventListener("click", () => renderMovies(null));
 actionBtn.addEventListener("click", () => renderMovies("action"));

@@ -32,14 +32,12 @@ body {
 .sidebar button:hover {
     background-color: #f0f0f0;
 }
-
 .sidebar button:focus{
     background-color: #f0f0f0; 
     outline: none;
     border-radius: 5px; 
     box-shadow: 0 0 1px #023d79;
 }
-
 .main {
     flex: 1;
 }
@@ -56,11 +54,9 @@ body {
 .new-movie:hover {
     background-color: #1864b5;
 }
-
 .new-movie:active{
     scale: 0.9;
 }
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -120,4 +116,67 @@ th {
     border: 1px solid #ddd;
     border-radius: 5px;
     outline-color: gray;
+}
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* чтобы элемент был поверх остальных */
+    background-color: #f9f9f9;
+    border-radius: 16px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    padding: 24px;
+    width: 320px;
+    text-align: center;
+}
+
+
+.popup_title {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+.popup input {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 16px;
+}
+
+.popup input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.3);
+}
+
+.popup button {
+    margin-top: 16px;
+    padding: 12px 20px;
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.popup button:hover {
+    background-color: #357ab8;
+}
+
+.popup button:active {
+    transform: scale(0.98);
+}
+
+body.no-scroll {
+    overflow: hidden;
 }
