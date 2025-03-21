@@ -18,37 +18,37 @@ const showingElm = document.querySelector('.showing') as HTMLParagraphElement;
 const searchInput = document.querySelector('.search input') as HTMLInputElement;
 const newMovieBtn = document.querySelector('.new-movie') as HTMLButtonElement;
 
-function renderMovies(genre: string | null) {
-  tableBody!.innerHTML = "";
-  const filteredMovies = genre ? movies.filter(movie => movie.genre === genre) : movies;
+// function renderMovies(genre: string | null) {
+//   tableBody!.innerHTML = "";
+//   const filteredMovies = genre ? movies.filter(movie => movie.genre === genre) : movies;
 
-  showingElm.textContent = `Showing ${filteredMovies.length} movies in the database.`;
+//   showingElm.textContent = `Showing ${filteredMovies.length} movies in the database.`;
 
-  filteredMovies.forEach((movie, index) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-          <td class="title">${movie.title}</td>
-          <td class="genre">${movie.genre}</td>
-          <td class="stock">${movie.stock}</td>
-          <td class="rate">${movie.rate}</td>
-          <td><span class="heart">&#9829;</span></td>
-          <td><button class="delete">Delete</button></td>
-      `;
-    const deleteBtn = row.querySelector(".delete") as HTMLButtonElement;
-    const titleCell = row.querySelector('.title') as HTMLTableCellElement;
+//   filteredMovies.forEach((movie, index) => {
+//     const row = document.createElement('tr');
+//     row.innerHTML = `
+//           <td class="title">${movie.title}</td>
+//           <td class="genre">${movie.genre}</td>
+//           <td class="stock">${movie.stock}</td>
+//           <td class="rate">${movie.rate}</td>
+//           <td><span class="heart">&#9829;</span></td>
+//           <td><button class="delete">Delete</button></td>
+//       `;
+//     const deleteBtn = row.querySelector(".delete") as HTMLButtonElement;
+//     const titleCell = row.querySelector('.title') as HTMLTableCellElement;
 
-    deleteBtn.addEventListener("click", () => {
-      const movieIndex = movies.findIndex(m => m.title === movie.title && m.genre === movie.genre);
-      if (movieIndex !== -1) {
-        movies.splice(movieIndex, 1);
-        renderMovies(genre);
-      }
-    });
+//     deleteBtn.addEventListener("click", () => {
+//       const movieIndex = movies.findIndex(m => m.title === movie.title && m.genre === movie.genre);
+//       if (movieIndex !== -1) {
+//         movies.splice(movieIndex, 1);
+//         renderMovies(genre);
+//       }
+//     });
 
 
-    tableBody?.appendChild(row);
-  });
-}
+//     tableBody?.appendChild(row);
+//   });
+// }
 
 function searchMovies(query: string) {
   const filteredMovies = movies.filter(movie => 
@@ -111,6 +111,59 @@ newMovieBtn.addEventListener("click", () => {
   console.log("Кнопка нажата!");
   addNewMovie();
 });
+
+const moviesPerPage = 5; 
+
+function renderMovies(genre: string | null, currentPage: number = 1) {
+  tableBody!.innerHTML = "";
+
+  const filteredMovies = genre ? movies.filter(movie => movie.genre === genre) : movies;
+
+  const totalPages = Math.ceil(filteredMovies.length / moviesPerPage);
+
+  const start = (currentPage - 1) * moviesPerPage;
+  const pageMovies = filteredMovies.slice(start, start + moviesPerPage);
+
+  showingElm.textContent = `Showing ${filteredMovies.length} movies in the database.`;
+
+  pageMovies.forEach((movie, index) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+          <td class="title">${movie.title}</td>
+          <td class="genre">${movie.genre}</td>
+          <td class="stock">${movie.stock}</td>
+          <td class="rate">${movie.rate}</td>
+          <td><span class="heart">&#9829;</span></td>
+          <td><button class="delete">Delete</button></td>
+      `;
+    const deleteBtn = row.querySelector(".delete") as HTMLButtonElement;
+    deleteBtn.addEventListener("click", () => {
+      const movieIndex = movies.findIndex(m => m.title === movie.title && m.genre === movie.genre);
+      if (movieIndex !== -1) {
+        movies.splice(movieIndex, 1);
+        renderMovies(genre, currentPage);
+      }
+    });
+    tableBody?.appendChild(row);
+  });
+
+  updatePagination(totalPages, currentPage, genre);
+}
+
+function updatePagination(totalPages: number, currentPage: number, genre: string | null) {
+  const paginationDiv = document.querySelector(".pagination") as HTMLDivElement;
+  paginationDiv.innerHTML = "";
+
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement("button");
+    btn.textContent = i.toString();
+    if (i === currentPage) btn.classList.add("active");
+    btn.addEventListener("click", () => {
+      renderMovies(genre, i);
+    });
+    paginationDiv.appendChild(btn);
+  }
+}
 
 
 
